@@ -3,28 +3,30 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <meta content="telephone=no" name="format-detection" />
-    <title>广科小喵</title>
-    <link rel="stylesheet" href="http://gxgk-wechat.b0.upaiyun.com/styles/weui.min.css" />
-    <link rel="stylesheet" href="http://gxgk-wechat.b0.upaiyun.com/styles/auth.min.css" />
-    <script type="text/javascript">
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?{{ baidu_analytics }}";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+    <title>村夫的村子</title>
+	<style>
+	body {background-color:#b0c4de;}
+	button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+	</style>
 </head>
 
 <body ontouchstart>
     <form action="/admin/signin" method="post">
-			  <p><button type="submit">解密</button></p>
+			  <button id="one" type="submit">用户</button>
 			  </form>
 	<form action="/admin/act" method="post">
-			  <p><button type="submit">生成陪行者订单</button></p>
+			  <button id='tow' type="submit">生成陪行者订单</button>
 			  </form>
 </body>
 
