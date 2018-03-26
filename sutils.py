@@ -111,10 +111,10 @@ def ob_valite(data):
 
 			
 if __name__ == '__main__':
-	#my_db = sxs_db('vault')
-	# mobile = '13801000001'
-	sql = "SELECT sex from user where name = 'shen' "  
-	#print(my_db.get_data(sql))
+	my_db = sxs_db('sxs_vault')
+	mobile = '13801000001'
+	sql = "SELECT real_name from vault_user WHERE mobile = '%s'" % mobile  
+	print(my_db.get_data(sql))
 	
 	#print(ob_element(data,1))
 	#print(data['test_element'][0]['test_control'],data)
