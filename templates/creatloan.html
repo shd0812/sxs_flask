@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>创建标的</title>
+<style>
+body{background-color:#b0c4de;}
+div{
+text-align: center;
+}
+
+</style>
+
+</head>
+<body>
+<div>
+<h3>滴，滴滴</h3>
+<form action="/admin/create_loan" method="post">
+<p>贷款类型目前仅支持房缘贷和企业贷款，(房缘贷为 fang，企业贷为qi)</p>
+<p><input type="text" name="loantype" placeholder="请输入贷款类型" style="height:25px;text-align:center" size='40'></p>
+<p><input type="text" name="idcard" placeholder="请输入身份证号或者企业统一社会信用代码" style="height:25px;text-align:center" size='40'></p>
+<p><input type="text" name="num" placeholder="请输入标的数量（2开始）" style="height:25px;text-align:center" size='40'></p>
+<p><input type="text" name="title" placeholder="请输入标的名称" style="height:25px;text-align:center" size='40'></p>
+<p><button id="one" type="submit">开始</button></p>
+</form>
+<h3>{{get_flashed_messages()[0]}}</h3>
+</div>
+</body>
+</html>

@@ -112,8 +112,8 @@ def ob_valite(data):
 			
 if __name__ == '__main__':
 	my_db = sxs_db('sxs_vault')
-	mobile = '13801000001'
-	sql = "SELECT real_name from vault_user WHERE mobile = '%s'" % mobile  
+	mobile = '15900000050'
+	sql = "SELECT verify FROM vault_user_mobile_verify WHERE mobile = '%s' ORDER BY ID DESC LIMIT 1 " % mobile  
 	print(my_db.get_data(sql))
 	
 	#print(ob_element(data,1))
