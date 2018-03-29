@@ -18,15 +18,20 @@
     margin: 4px 2px;
     cursor: pointer;
 }
+	div{
+text-align: center;
+}
 	</style>
 </head>
 
 <body>
+<div>
 	{% for data in datas %}
-    <form action={{data['url']}} method="post">
+    <form target="_blank" action={{data['url']}} method="post">
 			  <button  type="submit">{{data['btn_name']}}</button>
 	</form>
 	{% endfor %}
+</div>	
 </body>
 
 </html>
