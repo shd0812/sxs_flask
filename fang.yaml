@@ -1,6 +1,6 @@
 data:
   loanTermType: 2
-  guaranteeBusinessID: '112164362286'
+  guaranteeBusinessID: ''
   loanId: ''
   userid: ''
   xwUserNo: 111176710011
@@ -16,7 +16,7 @@ data:
   workAge: 2
   title: 我要测试
   agreeNo: ''
-  money: 400
+  money: 3000
   lowMoney: 100
   yearRates: 12
   loanTerm: 3

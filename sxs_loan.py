@@ -61,7 +61,7 @@ def get_qiye(code):
 		
 	
 #提交标的  file_name:yaml文件名字  type：1 个人贷 2 企业贷  title：借款标题 
-def get_loanID(file_name,title,idCard):
+def get_loanID(file_name,title,idCard,money,month):
 	test_url,qi_url = get_url('person'),get_url('bus')
 	data = get_data(file_name)
 	form_data =(data['data'])
@@ -81,6 +81,8 @@ def get_loanID(file_name,title,idCard):
 		form_data['username'] = dic['realName']
 		form_data['mobile']= dic['mobile']
 		form_data['xwUserNo']= dic['userNumber']
+		form_data['money']=money
+		form_data['loanTerm']=month
 	else:
 		dic = get_qiye(idCard)
 		form_data['xwUserNo']=dic['userNumber']
@@ -92,8 +94,9 @@ def get_loanID(file_name,title,idCard):
 		form_data['socialCreditCode']=idCard
 		form_data['bankLicense']=dic['bankLicense']
 		form_data['creditCode']=dic['creditCode']
-		
-		print (dic)
+		form_data['money']=money
+		form_data['loanTerm']=month
+		#print (dic)
 	#print (form_data) 112164362286
 	cookies = base_request()
 	if type == 1:
@@ -105,15 +108,18 @@ def get_loanID(file_name,title,idCard):
 	res_vault=r.json()
 	print(res_vault)
 	code = res_vault['code']
-	loanId=res_vault['data']['loanId']
-	updata(loanId)
-	sleep(1)
-	ZB_URL= get_url('tender')
-	ZB_data={'loanid':loanId,'status':'zbz'}
-	reponse=requests.post(ZB_URL,ZB_data,cookies=cookies)
-	res_vault=reponse.json()
-	print(res_vault)
-	
+	if code =='-1':
+		return res_vault['error']
+	else:
+		loanId=res_vault['data']['loanId']
+		updata(loanId)
+		sleep(1)
+		ZB_URL= get_url('tender')
+		ZB_data={'loanid':loanId,'status':'zbz'}
+		reponse=requests.post(ZB_URL,ZB_data,cookies=cookies)
+		msg_code=reponse.json()
+		print(msg_code['msg'])
+		return msg_code['msg']
 
 
 	
@@ -127,7 +133,7 @@ if __name__=='__main__':
 	times=2
 	while (start_num < times):
 		title='批量交易款'
-		get_loanID('fang',title,'110101198101010544')
+		get_loanID('fang',title,'110101198101010544',100,3)
 		start_num+=1
 	
 

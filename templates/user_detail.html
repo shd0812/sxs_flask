@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>村夫的村子</title>
+	<style>
+	body {background-color:#b0c4de;}
+	button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+	div{
+text-align: center;
+}
+	</style>
+</head>
+
+<body>
+<div>
+	<table border="1">
+  <tr>
+    <th>用户id</th>
+    <th>姓名</th>
+	<th>手机号码</th>
+	<th>自己的邀请码</th>
+	<th>邀请人的用户id</th>
+	<th>渠道类型</th>
+  </tr>
+ {% for data in datas %} 
+  <tr>
+    <td>{{data['id']}}</td>
+    <td>{{data['real_name']}}</td>
+	<td>{{data['mobile']}}</td>
+	<td>{{data['invite_id']}}</td>
+	<td>{{data['friend_id']}}</td>
+	<td>{{data['channel_type']}}</td>
+  </tr>
+	{% endfor %}
+</table>
+	
+</div>	
+
+	
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>查询验证码</title>
+</head>
+<body>
+<form action="/admin/user_code" method="post">
+			  <p>查询用户验证码</p>
+			  <p><input name="mobile" placeholder='请输入手机号' size="50"></p>
+			  <p><button type="submit">查询</button></p>
+			  </form>
+			  <h3>{{get_flashed_messages()[0]}}</h3>
+<form action="/admin/user_detail" method="post">
+			  <p>查询用户信息</p>
+			  <p><input name="mobile" placeholder='请输入手机号' size="50"></p>
+			  <p><button type="submit">查询</button></p>
+			  </form>
+<form action="/admin/user_tender" method="post">
+			  <p>查询用户投资情况</p>
+			  <p><input name="mobile" placeholder='请输入手机号或借款编号或用户id' size="50"></p>
+			  <p><button type="submit">查询</button></p>
+			  </form>			  
+</body>			  
+			  
+</html>

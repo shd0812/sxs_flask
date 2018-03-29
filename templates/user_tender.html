@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>村夫的村子</title>
+	<style>
+	body {background-color:#b0c4de;}
+	button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+	div{
+text-align: center;
+}
+	</style>
+</head>
+
+<body>
+<div>
+	<h3 align="center">用户投资记录表</h3>
+	<table border="1" align="center">
+  <tr>
+    <th>用户姓名</th>
+    <th>用户id</th>
+	<th>手机号码</th>
+	<th>借款编号</th>
+	<th>标的编号</th>
+	<th>投资金额</th>
+	<th>投资时间</th>
+	<th>投资状态</th>
+	<th>业务状态</th>
+	<th>流水号</th>
+	<th>红包金额</th>
+	<th>投资类型</th>
+	<th>放款时间</th>
+	<th>交割时间</th>
+  </tr>
+ {% for data in datas %} 
+  <tr>
+    <td>{{data['real_name']}}</td>
+    <td>{{data['user_id']}}</td>
+	<td>{{data['mobile']}}</td>
+	<td>{{data['project_no']}}</td>
+	<td>{{data['deal_no']}}</td>
+	<td>{{data['in_money']}}</td>
+	<td>{{data['in_time']}}</td>
+	<td>{{data['status']}}</td>
+	<td>{{data['biz_status']}}</td>
+	<td>{{data['request_no']}}</td>
+	<td>{{data['redpack_money']}}</td>
+	<td>{{data['type']}}</td>
+	<td>{{data['loan_time']}}</td>
+	<td>{{data['subscription_time']}}</td>
+  </tr>
+	{% endfor %}
+</table>
+	
+</div>	
+
+
+
+<div>
+	<h3 align="center">用户还款记录表</h3>
+	<table border="1" align="center">
+  <tr>
+    <th>用户id</th>
+	<th>借款编号</th>
+	<th>还款日期</th>
+	<th>还款期号</th>
+	<th>本金</th>
+	<th>利息</th>
+	<th>加息</th>
+	<th>还款状态</th>
+	<th>流水号</th>
+	<th>最后修改日期</th>
+	<th>还款日期</th>
+
+  </tr>
+ {% for repay_data in repay_datas %} 
+  <tr>
+    <td>{{repay_data['user_id']}}</td>
+	<td>{{repay_data['project_no']}}</td>
+	<td>{{repay_data['date']}}</td>
+	<td>{{repay_data['term_no']}}</td>
+	<td>{{repay_data['principal']}}</td>
+	<td>{{repay_data['interest']}}</td>
+	<td>{{repay_data['add_interest']}}</td>
+	<td>{{repay_data['state']}}</td>
+	<td>{{repay_data['request_no']}}</td>
+	<td>{{repay_data['last_time']}}</td>
+	<td>{{repay_data['repay_time']}}</td>
+  </tr>
+	{% endfor %}
+</table>
+	
+</div>	
+
+	
+</body>
+
+</html>
