@@ -18,7 +18,9 @@ def home():
 	{'url':'/admin/user',
 	'btn_name':'查询用户信息'},
 	{'url':'/admin/create',
-	'btn_name':'建标'}]
+	'btn_name':'贷款端建标'},
+	{'url':'/admin/repay',
+	'btn_name':'还款以及债转'}]
 	return render_template('index.html',datas=datas)
 #查询用户信息
 @admin.route('/user', methods=['POST'])
@@ -29,11 +31,14 @@ def user():
 def user_code():
 	my_db = sxs_db('sxs_vault')
 	mobile = request.form['mobile']
-	sql = "SELECT verify FROM vault_user_mobile_verify WHERE mobile = '%s' ORDER BY ID DESC LIMIT 1 " % mobile 
-	data = my_db.get_data(sql)
-	print (data)
-	sex = data[0]['verify']
-	flash('您的验证码为%s' % sex)
+	if mobile =='':
+		flash('2222222222')
+	else:
+		sql = "SELECT verify FROM vault_user_mobile_verify WHERE mobile = '%s' ORDER BY ID DESC LIMIT 1 " % mobile 
+		data = my_db.get_data(sql)
+		print (data)
+		sex = data[0]['verify']
+		flash('您的验证码为%s' % sex)
 	return render_template('user.html')
 
 	#用户信息
@@ -102,6 +107,35 @@ def create_loan():
 	msg_code=loan(loan_type,idcard,num,title,money,month)
 	flash(msg_code)
 	return render_template('creatloan.html')
+	
+#还款以及债转 
+@admin.route('/repay',methods=['POST'])
+def repay():
+	return render_template('repay.html')
+@admin.route('/up_repay',methods=['POST'])
+def up_repay():
+	my_db = sxs_db('sxs_vault')
+	project_no = request.form['project_no']
+	sql ="UPDATE vault_user_invest_trade_log SET biz_status =3 WHERE  `status` =3 AND biz_status =2 AND project_no ='%s'" % project_no
+	sqls = "select biz_status from vault_user_invest_trade_log  WHERE  project_no ='%s'" % project_no
+	my_db.get_data(sql)
+	biz_status = my_db.get_data(sqls)[0]['biz_status']
+	
+	my_db1 = sxs_db('sxs_loan')
+	sql1="UPDATE vault_loan_payment SET repayTime = NOW() WHERE loanNo = '%s'" % project_no
+	sql1s = "select repayTime from vault_loan_payment where loanNo = '%s'" % project_no
+	my_db1.get_data(sql1)
+	repayTime = my_db1.get_data(sql1s)[0]['repayTime']
+	if biz_status ==3:
+		flash('更改成功,还款时间为%s' % repayTime)
+	else:
+		flash('更改失败')
+	return render_template('repay.html')
+
+
+
+	
+
 # if __name__ == '__main__':
 	
 	# app.run(host='0.0.0.0',port=5001,debug=True)

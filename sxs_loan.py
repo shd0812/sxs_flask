@@ -3,7 +3,7 @@ import requests
 import json
 import os
 from yaml import load
-import ddtools
+from sutils import sxs_db,shd_time,operate_file
 from time import sleep
 from configparser import ConfigParser
 
@@ -29,7 +29,7 @@ def get_data(loantype):
 
 #更新标的未待招标，省去上传图片流程	
 def updata(loanId):
-	my_db =ddtools.sxs_db('sxs_loan')
+	my_db =sxs_db('sxs_loan')
 	sql = "UPDATE vault_loan SET state =4 WHERE  state=1  AND id=%s " % loanId
 	#print (sql)
 	print (my_db.get_data(sql))
@@ -39,21 +39,25 @@ def base_request():
 	login_url = get_url('login')
 	
 	#session = requests.Session()
-	login_data = {'account':'13521137793','passWord':'123456','pass':'111111'}
+	#获取用户名和密码
+	operate_files = operate_file('config.ini')
+	data=operate_files.open()['user_info']
+	login_data = {'account':data['mobile'],'passWord':data['passwd'],'pass':data['passcode']}
 	r=requests.post(login_url,login_data)
 	_cookies=r.cookies
 	#print(_cookies)
 	return _cookies
 	#return session
 def get_person(idCard):
-	my_db =ddtools.sxs_db('sxs_borrower')
+	my_db =sxs_db('sxs_borrower')
 	sql = "SELECT realName,mobile,userNumber FROM bor_user_personal WHERE idCard = '%s'" % idCard
 	
 	data = my_db.get_data(sql)
+	
 	return data[0]
 # 1 统一社会信用代码 仅支持社会统一信用代码 2 营业执照
 def get_qiye(code):
-		my_db =ddtools.sxs_db('sxs_borrower')
+		my_db =sxs_db('sxs_borrower')
 		sql = "SELECT userNumber,companyName,contact,contactIDCard,contactPersonName,contactPersonPhone,unifiedCode,creditCode,bankLicense FROM bor_user_company WHERE unifiedCode = '%s'" % code
 		data = my_db.get_data(sql)
 		return data[0]
@@ -65,7 +69,7 @@ def get_loanID(file_name,title,idCard,money,month):
 	test_url,qi_url = get_url('person'),get_url('bus')
 	data = get_data(file_name)
 	form_data =(data['data'])
-	sxs_time = ddtools.shd_time()
+	sxs_time = shd_time()
 	str1 = str(sxs_time.getTimestamp())
 	lenth = len(str1)
 	title1=str1[lenth-4:lenth]
@@ -132,7 +136,7 @@ if __name__=='__main__':
 	start_num =1
 	times=2
 	while (start_num < times):
-		title='批量交易款'
+		title='111批量交易款'
 		get_loanID('fang',title,'110101198101010544',100,3)
 		start_num+=1
 	

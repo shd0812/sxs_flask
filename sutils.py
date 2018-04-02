@@ -22,6 +22,7 @@ class operate_file():
 		elif type == 'ini':
 			dd_config = ConfigParser()
 			dd_config.read(config_path)
+			print(dd_config)
 			return	dd_config
 
 
@@ -97,6 +98,7 @@ class sxs_db():
 			self.cursor.execute(sql, k)
 		except Exception as e:
 			print('sql执行失败')
+			print(sql)
 			return 'sql_error', e
 		else:
 			self.db.commit()
