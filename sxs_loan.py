@@ -87,6 +87,7 @@ def get_loanID(file_name,title,idCard,money,month):
 		form_data['xwUserNo']= dic['userNumber']
 		form_data['money']=money
 		form_data['loanTerm']=month
+		form_data['idcard']=idCard
 	else:
 		dic = get_qiye(idCard)
 		form_data['xwUserNo']=dic['userNumber']

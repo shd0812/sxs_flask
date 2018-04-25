@@ -46,7 +46,7 @@ def user_code():
 def user_detail():
 	my_db = sxs_db('sxs_vault')
 	mobile = request.form['mobile']	
-	sql = "SELECT id,real_name ,mobile,invite_id,friend_id,channel_type FROM vault_user WHERE mobile = '%s'" % mobile 
+	sql = "SELECT id,real_name ,platform_user_no,mobile,invite_id,friend_id,channel_type FROM vault_user WHERE mobile = '%s'" % mobile 
 	data = my_db.get_data(sql)
 	key=(data[0]['id'])
 	print(type(key))
@@ -59,24 +59,24 @@ def user_tender():
 	my_db = sxs_db('sxs_vault')
 	mobile = request.form['mobile']
 	if len(mobile)==14:
-		sql = "SELECT real_name,user_id,mobile,project_no,deal_no,in_money,in_time,`status`,biz_status,request_no,redpack_money,type,loan_time,subscription_time FROM vault_user_invest_trade_log WHERE project_no = '%s' " % mobile
+		sql = "SELECT real_name,user_id,platform_user_no,mobile,project_no,deal_no,in_money,in_time,`status`,biz_status,request_no,redpack_money,type,loan_time,subscription_time,remaining_amount,remaining_available_transfer_amount FROM vault_user_invest_trade_log WHERE project_no = '%s' " % mobile
 		
 	elif len(mobile)==11:
-		sql = "SELECT real_name,user_id,mobile,project_no,deal_no,in_money,in_time,`status`,biz_status,request_no,redpack_money,type,loan_time,subscription_time FROM vault_user_invest_trade_log WHERE mobile = '%s'" % mobile
+		sql = "SELECT real_name,user_id,platform_user_no,mobile,project_no,deal_no,in_money,in_time,`status`,biz_status,request_no,redpack_money,type,loan_time,subscription_time,remaining_amount,remaining_available_transfer_amount FROM vault_user_invest_trade_log WHERE mobile = '%s'" % mobile
 	else:
-		sql = "SELECT real_name,user_id,mobile,project_no,deal_no,in_money,in_time,`status`,biz_status,request_no,redpack_money,type,loan_time,subscription_time FROM vault_user_invest_trade_log WHERE user_id = '%s' " % mobile
+		sql = "SELECT real_name,user_id,platform_user_no,mobile,project_no,deal_no,in_money,in_time,`status`,biz_status,request_no,redpack_money,type,loan_time,subscription_time,remaining_amount,remaining_available_transfer_amount FROM vault_user_invest_trade_log WHERE user_id = '%s' " % mobile
 	data = my_db.get_data(sql)
 	
 	
 	my_db = sxs_db('sxs_vault')
 	mobile = request.form['mobile']
 	if len(mobile)==14:
-		sql= "SELECT user_id,project_no,date,term_no,principal,interest,add_interest,state,request_no,last_time,repay_time FROM vault_user_repayment_log WHERE project_no = '%s'" % mobile
+		sql= "SELECT user_id,project_no,date,term_no,principal,interest,add_interest,state,request_no,last_time,repay_time,is_ahead_repay FROM vault_user_repayment_log WHERE project_no = '%s'" % mobile
 		
 	elif len(mobile)==11:
-		sql= "SELECT user_id,project_no,date,term_no,principal,interest,add_interest,state,request_no,last_time,repay_time FROM vault_user_repayment_log WHERE user_id = (SELECT id FROM vault_user WHERE mobile='%s')" % mobile
+		sql= "SELECT user_id,project_no,date,term_no,principal,interest,add_interest,state,request_no,last_time,repay_time,is_ahead_repay FROM vault_user_repayment_log WHERE user_id = (SELECT id FROM vault_user WHERE mobile='%s')" % mobile
 	else:
-		sql= "SELECT user_id,project_no,date,term_no,principal,interest,add_interest,state,request_no,last_time,repay_time FROM vault_user_repayment_log WHERE user_id = '%s'" % mobile
+		sql= "SELECT user_id,project_no,date,term_no,principal,interest,add_interest,state,request_no,last_time,repay_time,is_ahead_repay FROM vault_user_repayment_log WHERE user_id = '%s'" % mobile
 	repay_data = my_db.get_data(sql)
 	
 	#repay_datas=my_db.get_data(sql1)

@@ -31,6 +31,7 @@ text-align: center;
   <tr>
     <th>用户姓名</th>
     <th>用户id</th>
+	<th>用户新网编号</th>
 	<th>手机号码</th>
 	<th>借款编号</th>
 	<th>标的编号</th>
@@ -43,11 +44,14 @@ text-align: center;
 	<th>投资类型</th>
 	<th>放款时间</th>
 	<th>交割时间</th>
+	<th>债转剩余金额</th>
+	<th>剩余可转让金额</th>
   </tr>
  {% for data in datas %} 
   <tr>
     <td>{{data['real_name']}}</td>
     <td>{{data['user_id']}}</td>
+	<td>{{data['platform_user_no']}}</td>
 	<td>{{data['mobile']}}</td>
 	<td>{{data['project_no']}}</td>
 	<td>{{data['deal_no']}}</td>
@@ -60,6 +64,8 @@ text-align: center;
 	<td>{{data['type']}}</td>
 	<td>{{data['loan_time']}}</td>
 	<td>{{data['subscription_time']}}</td>
+	<td>{{data['remaining_amount']}}</td>
+	<td>{{data['remaining_available_transfer_amount']}}</td>
   </tr>
 	{% endfor %}
 </table>
@@ -82,8 +88,8 @@ text-align: center;
 	<th>还款状态</th>
 	<th>流水号</th>
 	<th>最后修改日期</th>
-	<th>还款日期</th>
-
+	<th>最终还款日期</th>
+	<th>是否提前还款</th>
   </tr>
  {% for repay_data in repay_datas %} 
   <tr>
@@ -98,6 +104,7 @@ text-align: center;
 	<td>{{repay_data['request_no']}}</td>
 	<td>{{repay_data['last_time']}}</td>
 	<td>{{repay_data['repay_time']}}</td>
+	<td>{{repay_data['is_ahead_repay']}}
   </tr>
 	{% endfor %}
 </table>
