@@ -4,6 +4,8 @@ import pymysql
 from yaml import  load
 from configparser import ConfigParser
 import os
+import datetime
+
 
 # 操作文件类
 class operate_file():
@@ -59,15 +61,11 @@ class shd_time():
 		dt = time.strftime("%Y-%m-%d %H:%M:%S", time_local)
 		return dt
 
+	def getNow(self):
+		nowTime=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')#现在
+		return nowTime
+		
 
-		# 操作数据库
-		# 参数化sql 有 两种方式，一种是字典，另一种是 目前正在用的
-		# sql = '''
-		# UPDATE vault_user_mobile_verify SET verify = '56' WHERE mobile = %(phone)s
-		# '''
-
-		# vaule = {"phone":'18700112233'}
-		# cursor.execute(sql,vaule)
 
 
 class sxs_db():
@@ -113,10 +111,10 @@ def ob_valite(data):
 
 			
 if __name__ == '__main__':
-	my_db = sxs_db('sxs_vault')
-	mobile = '15900000050'
-	sql = "SELECT verify FROM vault_user_mobile_verify WHERE mobile = '%s' ORDER BY ID DESC LIMIT 1 " % mobile  
-	print(my_db.get_data(sql))
+	#my_db = sxs_db('sxs_vault')
+	#mobile = '15900000050'
+	#sql = "SELECT verify FROM vault_user_mobile_verify WHERE mobile = '%s' ORDER BY ID DESC LIMIT 1 " % mobile  
+	#print(my_db.get_data(sql))
 	
 	#print(ob_element(data,1))
 	#print(data['test_element'][0]['test_control'],data)
@@ -124,7 +122,9 @@ if __name__ == '__main__':
 
 
 
-	# sxs_time = shd_time()
+	sxs_time = shd_time()
+	print(sxs_time.getNow())
+
 	# str1 = str(sxs_time.getTimestamp())
 	# lenth = len(str1)
 	# print(str1, str1[lenth - 3:lenth])

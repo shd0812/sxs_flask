@@ -1,0 +1,22 @@
+
+
+
+登录
+
+https://ts.shaxiaoseng.com:4433/Vault/vault.php/Login/inLogin.html
+mobile=13521137793&password=96e79218965eb72c92a549dd5a330112&verify_code=111111
+
+
+https://ts.shaxiaoseng.com:4433/Vault/vault.php/Dispersed/releaseTwo.html
+                                                                                                                         个月																					2018-04-28 00:00:00
+id=0&loan_id=6379&total_money=100&loan_term=1&loan_term_type=2&year_rates=12&deal_no=FY18042663048&loan_term_type_name=%E4%B8%AA%E6%9C%88&loan_type=2&project_no=1201804260003C&fund_raising_time=2&full_time=2018-04-28+00%3A00%3A00&grant_time=2018-04-29+00%3A00%3A00&repay_time=2018-05-28+00%3A00%3A00&threshold=100&bonus=0&is_newer_only=0&is_trable=1&is_pub=1&visible_time=2018-04-26+10%3A38%3A34&threshold=100&bonus=0&is_newer_only=0&is_trable=1&is_pub=1&publish_time=2018-04-26+10%3A38%3A34
+
+
+https://ts.shaxiaoseng.com:4433/Vault/vault.php/Dispersed/releaseThree.html
+
+
+id=0&loan_id=6379&total_money=100&loan_term=1&loan_term_type=2&year_rates=12&deal_no=FY18042663048&loan_term_type_name=%E4%B8%AA%E6%9C%88&loan_type=2&project_no=1201804260003C&fund_raising_time=2&full_time=2018-04-28+00%3A00%3A00&grant_time=2018-04-29+00%3A00%3A00&repay_time=2018-05-28+00%3A00%3A00&threshold=100&bonus=0&is_newer_only=0&is_trable=1&is_pub=1&visible_time=2018-04-26+10%3A38%3A34&publish_time=2018-04-26+10%3A38%3A34
+
+
+
+放款总金额，借款期限，借款利率，散标编号，借款类型（2,4），借款编号，筹款期限，满标时间，放款时间，还款时间，最低出借金额，加息利率，是否新手，是否可债转，生效时间，发布时间，

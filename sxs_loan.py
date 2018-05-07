@@ -47,6 +47,8 @@ def base_request():
 	_cookies=r.cookies
 	#print(_cookies)
 	return _cookies
+
+	
 	#return session
 def get_person(idCard):
 	my_db =sxs_db('sxs_borrower')
@@ -127,18 +129,31 @@ def get_loanID(file_name,title,idCard,money,month):
 		return msg_code['msg']
 
 
+def vault_baseRequest():
+	print(1111)
+	login_url='https://ts.shaxiaoseng.com:4433/Vault/vault.php/Login/inLogin.html'
+	login_data='mobile=13521137793&password=96e79218965eb72c92a549dd5a330112&verify_code=111111'
+	r=requests.post(login_url,login_data)
+	return r.cookies
+
+def get_loanInfo(loanId):
+	my_db =sxs_db('sxs_loan')
+	sql = "SELECT realName,mobile,userNumber FROM bor_user_personal WHERE idCard = '%s'" % idCard
 	
-		
+	data = my_db.get_data(sql)
+	
+	return data[0]
+	
 	
 
 if __name__=='__main__':
+	vault_baseRequest()
 	
-	
-	start_num =1
-	times=2
-	while (start_num < times):
-		title='111批量交易款'
-		get_loanID('fang',title,'110101198101010544',100,3)
-		start_num+=1
+	# start_num =1
+	# times=2
+	# while (start_num < times):
+		# title='111批量交易款'
+		# get_loanID('fang',title,'110101198101010544',100,3)
+		# start_num+=1
 	
 
