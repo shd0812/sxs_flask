@@ -1,0 +1,17 @@
+testcase:
+    - c_code: shaxiaoseng_xhzt
+      encry: 1
+    - t_code: hhh
+      encry: 1
+    - serial_num: dddddd
+      encry: 0
+    - mobile: 18513081600
+      encry: 1
+    - user_id: 312312
+      encry: 1
+    - user_name: shen
+      encry: 1
+    - user_identity: 110101198001010037
+      encry: 1
+    - sign: ddd555
+      encry: 0

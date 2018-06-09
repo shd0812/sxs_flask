@@ -1,0 +1,23 @@
+testcase:
+    - c_code: shaxiaoseng_xhzt
+      encry: 1
+    - t_code: hhh
+      encry: 1
+    - serial_num: ddd
+      encry: 0
+    - mobile: 4ddd
+      encry: 1
+    - user_id: 312312
+      encry: 1
+    - platform_uid: 61029
+      encry: 1
+    - user_name: shen
+      encry: 1
+    - user_identity: 3123123123123
+      encry: 1
+    - bid_url: https://djlkfj
+      encry: 0
+    - sign: ddd555
+      encry: 0
+    - source: 1
+      encry: 0

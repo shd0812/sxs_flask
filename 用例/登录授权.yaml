@@ -1,0 +1,15 @@
+testcase:
+    - c_code: shaxiaoseng_xhzt
+      encry: 1
+    - t_code: hhh
+      encry: 1
+    - serial_num: ddd
+      encry: 0
+    - user_id: 312312
+      encry: 1
+    - platform_uid: 61029
+      encry: 1
+    - register_token: 11
+      encry: 1
+    - sign: ddd555
+      encry: 0
