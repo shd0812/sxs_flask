@@ -20,7 +20,10 @@ def home():
 	{'url':'/admin/create',
 	'btn_name':'贷款端建标'},
 	{'url':'/admin/repay',
-	'btn_name':'还款以及债转'}]
+	'btn_name':'还款以及债转'},
+		{'url': '/home/',
+		 'btn_name': '星火项目'}
+	]
 	return render_template('index.html',datas=datas)
 #查询用户信息
 @admin.route('/user', methods=['POST'])
