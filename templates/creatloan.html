@@ -15,8 +15,11 @@ text-align: center;
 <div>
 <h3>滴，滴滴</h3>
 <form  target="_blank" action="/admin/create_loan" method="post">
-<p>贷款类型目前仅支持房缘贷和企业贷款，(房缘贷为 fang，企业贷为qi)</p>
-<p><input type="text" name="loantype" placeholder="请输入贷款类型" style="height:25px;text-align:center" size='40'></p>
+<p>贷款类型目前仅支持房缘贷和企业贷款</p>
+<select name="loantype">
+    <option value="fang">房缘贷</option>
+    <option value="qi">企缘贷</option>
+</select>
 <p><input type="text" name="idcard" placeholder="请输入身份证号或者企业统一社会信用代码" style="height:25px;text-align:center" size='40'></p>
 <p><input type="text" name="num" placeholder="请输入标的数量（2开始）" style="height:25px;text-align:center" size='40'></p>
 <p><input type="text" name="money" placeholder="请输入标的金额" style="height:25px;text-align:center" size='40'></p>
