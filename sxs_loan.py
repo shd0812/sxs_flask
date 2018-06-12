@@ -109,6 +109,7 @@ def get_loanID(file_name,title,idCard,money,month,yearRates,dailyRate):
 			form_data['dailyRate'] = dailyRate
 			form_data['repayMethod']='2'
 			form_data['loanTermType']='1'
+			form_data['isCarMerchant']='6'
 		#print (dic)
 	#print (form_data) 112164362286
 	cookies = base_request()
