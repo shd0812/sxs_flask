@@ -67,7 +67,7 @@ def get_qiye(code):
 		
 	
 #提交标的  file_name:yaml文件名字  type：1 个人贷 2 企业贷  title：借款标题 
-def get_loanID(file_name,title,idCard,money,month,yearRates):
+def get_loanID(file_name,title,idCard,money,month,yearRates,dailyRate):
 	test_url,qi_url = get_url('person'),get_url('bus')
 	data = get_data(file_name)
 	form_data =(data['data'])
@@ -105,6 +105,10 @@ def get_loanID(file_name,title,idCard,money,month,yearRates):
 		form_data['money']=money
 		form_data['loanTerm']=month
 		form_data['yearRates'] = yearRates
+		if dailyRate !='':
+			form_data['dailyRate'] = dailyRate
+			form_data['repayMethod']='2'
+			form_data['loanTermType']='1'
 		#print (dic)
 	#print (form_data) 112164362286
 	cookies = base_request()

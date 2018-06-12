@@ -92,11 +92,11 @@ def user_tender():
 def create():
 	return render_template('creatloan.html')
 
-def loan(loan_type,idcard,times,title,money,month,yearRates):
+def loan(loan_type,idcard,times,title,money,month,yearRates,dailyRate):
 	start_num =1
 	times = int(times)
 	while (start_num < times):
-		data=get_loanID(loan_type,title,idcard,money,month,yearRates)
+		data=get_loanID(loan_type,title,idcard,money,month,yearRates,dailyRate)
 		start_num+=1
 	return data
 @admin.route('/create_loan', methods=['POST'])
@@ -108,7 +108,14 @@ def create_loan():
 	money = request.form['money']
 	yearRates = request.form['yearRates']
 	month=request.form['month']
-	msg_code=loan(loan_type,idcard,num,title,money,month,yearRates)
+	dailyRate=request.form['dailyRate']
+	if dailyRate=='':
+		print('日利率%s' % dailyRate)
+	else:
+		yearRates = float('%.2f' % (float(dailyRate)*360))
+	print(yearRates,dailyRate)
+	msg_code=loan(loan_type,idcard,num,title,money,month,yearRates,dailyRate)
+
 	flash(msg_code)
 	return render_template('creatloan.html')
 	
