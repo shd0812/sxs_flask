@@ -31,7 +31,7 @@ data:
   loanType: 4
   lowMoney: 100
   isFincing: 2
-  fundRaisingTime: 1
+  fundRaisingTime: 4
   loanDescription: 11
   intrustXWID: ''
   intrusType: ''
