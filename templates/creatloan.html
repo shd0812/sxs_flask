@@ -52,13 +52,30 @@ text-align: center;
               gi.style.display="none";
           }
 
+          $(".btn10").click(function(){
+    //alert('222')
+    var data = $("#addForm").serialize();
+    //alert(data)
+    var url = $("#addForm").attr("action");
+    //alert(url)
+   $.ajax({
+        type: 'POST',
+        url: url,
+       dataType: 'json',
+        data: data,
+        success: function (data) {
+           alert(data)
+            //$('#json').html(formatJson(data));
+        }
+     });
+});
         });
     </script>
 </head>
 <body>
 <div>
 <h3>滴，滴滴</h3>
-<form  target="_blank" action="/admin/create_loan" method="post">
+<form  target="_blank" id="addForm" action="/admin/create_loan" method="post">
 <p>贷款类型目前仅支持房缘贷和企业贷款</p>
 <select   id="select_name" name="loantype" onchange="gradeChange()">
     <option value="fang">房缘贷</option>
@@ -76,9 +93,10 @@ text-align: center;
     <span id="put" style="display:none">标的日利率:<input  type="text" name="dailyRate" placeholder="请输入标的日利率" style="height:25px;text-align:center;" size='40' ></span>
 <p>标的期限(月/天):<input type="text" name="month" placeholder="请输入标的期限（月）" style="height:25px;text-align:center" size='40'></p>
 <p>标的名称:<input type="text" name="title" placeholder="请输入标的名称" style="height:25px;text-align:center" size='40'></p>
-<p><button id="one" type="submit">开始</button></p>
+
 </form>
-<h3>{{get_flashed_messages()[0]}}</h3>
+    <p><button class="btn10" id="one" type="submit">开始</button></p>
+{#<h3>{{get_flashed_messages()[0]}}</h3>#}
 </div>
 </body>
 </html>

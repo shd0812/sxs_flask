@@ -5,7 +5,7 @@ from flask import render_template
 from sutils import sxs_db
 from sxs_loan import get_loanID
 
-from flask import Blueprint
+from flask import Blueprint,jsonify
 
 admin = Blueprint('admin', __name__)
 
@@ -116,8 +116,9 @@ def create_loan():
 	print(yearRates,dailyRate)
 	msg_code=loan(loan_type,idcard,num,title,money,month,yearRates,dailyRate)
 
-	flash(msg_code)
-	return render_template('creatloan.html')
+	#flash(msg_code)
+	print(msg_code)
+	return jsonify(msg_code)
 	
 #还款以及债转 
 @admin.route('/repay',methods=['POST'])
