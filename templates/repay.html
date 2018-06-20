@@ -2,7 +2,32 @@
 <html>
 <head>
 <title>还款数据更改页</title>
+
+   <script src="../static/jquery.min.js"></script>
+    <script>
+                $(document).ready(function() {
+                              $(".btn10").click(function(){
+    //alert('222')
+    var data = $("#addForm").serialize();
+    //alert(data)
+    var url = $("#addForm").attr("action");
+    //alert(url)
+   $.ajax({
+        type: 'POST',
+        url: url,
+       dataType: 'json',
+        data: data,
+        success: function (data) {
+           alert(data)
+            //$('#json').html(formatJson(data));
+        }
+     });
+});
+                });
+
+    </script>
 <style>
+
 body {background-color:#b0c4de;}
 	div{
 text-align: center;
@@ -11,12 +36,28 @@ text-align: center;
 </head>
 <body>
 <div>
-<form  action="/admin/up_repay" method="post">
-			  <p><h3>还款更改数据</h3></p>
-			  <p><input name="project_no" placeholder='标的标号' style="height:25px;" size="50"></p>
-			  <p><button type="submit">更改</button></p>
+    <div class="nav">
+    <p><h3>债权发起转让流程，仅适用于第二期发起债转，普通用户</h3></p>
+    <ul>
+        <li>白名单用户只要放款成功即可发起债权出让，但是如果认购再次发起就和普通用户，持有30天才可以，且回款日3天内不可发起债权出让</li>
+        <li>先还第一期</li>
+        <li>第二期通过更改放款时间和还款时间，发起债权</li>
+        <li>发起成功后，把之前更改的数据改回来，并让开发提供一个core服务的jar包，这样的目的是可以手动更改交割时间，便于第二期还款</li>
+        <li>这样就可以了</li>
+    </ul>
+        </div>
+<form  id="addForm" action="/admin/up_repay" method="post">
+
+			  <p><h3>发起债权出让</h3></p>
+    <select name="begin_end">
+        <option value="begin">发起债转</option>
+        <option value="end">取消债转</option>
+    </select>
+    <br>
+    <br>
+			  <span>投资人记录id: <input name="invest_id" placeholder='用户投资id' style="height:25px;" size="50"></span>
 			  </form>
-			  <h3>{{get_flashed_messages()[0]}}</h3>
+            <p><button class="btn10" type="submit">更改</button></p>
 	
 </div>		  
 </body>			  

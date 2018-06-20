@@ -33,4 +33,4 @@ class hh_DB():
             return self.cursor.fetchall()
 
 if __name__=='__main__':
-    db=hh_DB('sxs_vault','../data/config.ini')
+    db=hh_DB('sxs_vault','../config.ini')

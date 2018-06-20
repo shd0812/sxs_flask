@@ -4,7 +4,7 @@ from flask import request,flash
 from flask import render_template
 from sutils import sxs_db
 from sxs_loan import get_loanID
-
+from Transfer.transfer_server import switch_tran
 from flask import Blueprint,jsonify
 
 admin = Blueprint('admin', __name__)
@@ -120,29 +120,21 @@ def create_loan():
 	print(msg_code)
 	return jsonify(msg_code)
 	
-#还款以及债转 
+#还款以及债转
 @admin.route('/repay',methods=['POST'])
 def repay():
 	return render_template('repay.html')
 @admin.route('/up_repay',methods=['POST'])
 def up_repay():
-	my_db = sxs_db('sxs_vault')
-	project_no = request.form['project_no']
-	sql ="UPDATE vault_user_invest_trade_log SET biz_status =3 WHERE  `status` =3 AND biz_status =2 AND project_no ='%s'" % project_no
-	sqls = "select biz_status from vault_user_invest_trade_log  WHERE  project_no ='%s'" % project_no
-	my_db.get_data(sql)
-	biz_status = my_db.get_data(sqls)[0]['biz_status']
-	
-	my_db1 = sxs_db('sxs_loan')
-	sql1="UPDATE vault_loan_payment SET repayTime = NOW() WHERE loanNo = '%s'" % project_no
-	sql1s = "select repayTime from vault_loan_payment where loanNo = '%s'" % project_no
-	my_db1.get_data(sql1)
-	repayTime = my_db1.get_data(sql1s)[0]['repayTime']
-	if biz_status ==3:
-		flash('更改成功,还款时间为%s' % repayTime)
+	begin_type = request.form['begin_end']
+
+	invest_id = request.form['invest_id']
+
+	if invest_id=='':
+		ss='输入不能为空'
 	else:
-		flash('更改失败')
-	return render_template('repay.html')
+		ss=switch_tran(begin_type,invest_id)
+	return jsonify(ss)
 
 
 
