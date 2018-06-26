@@ -6,6 +6,8 @@ from XennHo.XH_View import xnho
 app.register_blueprint(xnho,url_prefix='/home')
 
 
+from GuMi.gumi_View import gm
+app.register_blueprint(gm,url_prefix='/gm')
 
 from shd_view import admin
 app.register_blueprint(admin,url_prefix='/admin')
@@ -18,5 +20,4 @@ def not_found(e):
     return render_template('404.html')
 
 if __name__ == '__main__':
-	#manager.run()
-	app.run(host='192.168.110.53',port=1314,debug=True)
+    app.run(host='192.168.110.53',port=1314,debug=True)

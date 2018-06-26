@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>谷米财富</title>
+	<style>
+body{background-color:#b0c4de;}
+div{
+	top:50%;
+	text-align: center;
+}
+	</style>
+	<script src="../static/jquery.min.js"></script>
+	<script>
+		function formatJson(msg) {
+        var rep = "~";
+        var jsonStr = JSON.stringify(msg, null, rep)
+        var str = "";
+        for (var i = 0; i < jsonStr.length; i++) {
+            var text2 = jsonStr.charAt(i)
+            if (i > 1) {
+                var text = jsonStr.charAt(i - 1)
+                if (rep != text && rep == text2) {
+                    str += "<br/>"
+                }
+            }
+            str += text2;
+        }
+        jsonStr = "";
+        for (var i = 0; i < str.length; i++) {
+            var text = str.charAt(i);
+            if (rep == text)
+                jsonStr += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+            else {
+                jsonStr += text;
+            }
+            if (i == str.length - 2)
+                jsonStr += "<br/>"
+        }
+        return jsonStr;
+    }
+$(document).ready(function() {
+$(".btn10").click(function(){
+    //alert('222')
+    var data = $("#addForm").serialize();
+    //alert(data)
+    var url = $("#addForm").attr("action");
+    //alert(url)
+   $.ajax({
+        type: 'POST',
+        url: url,
+       dataType: 'json',
+        data: data,
+        success: function (data) {
+           // alert(data)
+            $('#json').html(formatJson(data));
+        }
+     });
+});
+});
+</script>
+
+</head>
+
+<body >
+<div>
+	<form target="_blank" id="addForm" action="/gm/next" method="post">
+		<select name="parm_url">register
+			<option value="queryUser">1.用户信息查询</option>
+            <option value="queryBids">2.标的信息查询</option>
+			<option value="queryInvests">3.投资记录查询</option>
+		</select>
+		<p><textarea name="parm_str" rows="10" cols="100"></textarea></p>
+    </form>
+	<p><button class="btn10" type="submit">来呀，快活呀</button></p>
+
+
+</div>
+<hr>
+<div id="json" style="text-align:left">
+</div>
+</body>
+</html>
