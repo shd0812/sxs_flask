@@ -1,6 +1,7 @@
 import os
 from yaml import  load
 from configparser import ConfigParser
+import json
 # 操作文件类
 class operate_File():
 
@@ -31,6 +32,38 @@ class operate_File():
 
 
 if __name__=='__main__':
-    op =operate_File('../data/ssinvest.yaml')
-    print(op.read_file())
+    op =operate_File('../TestData/gm/valid.yaml')
+    d=op.read_file()
+    check_data={
+            'test_name':'用户信息查询',
+            'parm':{
+                'service':'bind_url',
+                'body':{
+                    'index':{
+                        'name':'shen',
+                        'vals':[111111,222222]
+                    }
+                    }
+                },
+            'expect':[{
+                'parm.body.index.name':'wang'
+            }]
+            }
+
+
+    print(d)
+    print(check_data)
+    expect_data = d.get('expect')[0]
+    key,=expect_data
+
+    li = key.split('.')
+
+    for x in range(len(li)):
+        d = d.get(li[x])
+    expect_str = expect_data.get(key)
+
+    print('')
+
+
+
 

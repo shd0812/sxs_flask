@@ -12,13 +12,13 @@ def home():
 
 @gm.route('/next', methods=['GET', 'POST'])
 def next():
-    print(1111)
-    print(request.method)
-    #type = request.form['apitype']
+
     parm_str=request.form['parm_str']
     parm_url = request.form['parm_url']
     data = send_post(parm_url, parm_str)
-    # list_dic={}
-    # list_dic['result']=str(data)
-    # print('返回结果:%s' % list_dic)
-    return jsonify(data)
+
+    print('view返回的结果:%s' %data)
+    if isinstance(data,str):
+        return data
+    else:
+        return jsonify(data)

@@ -3,10 +3,20 @@ import time
 import os
 from time import sleep
 import threading
-
+import traceback
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
 )
+
+#记录异常
+try:
+    a='1'
+    b='2'
+except:
+    f=open("c:log.txt",'a')
+    traceback.print_exc(file=f)
+    f.flush()
+    f.close()
 
 
 class Log:

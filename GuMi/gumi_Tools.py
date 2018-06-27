@@ -7,13 +7,25 @@ import random
 import json
 import struct
 from Common.common_Logger import myLog
-
+from Common.common_OpFile import operate_File
 logger = myLog.getLog()
 
 #生成16位随机字符串
 def creat_salt_string():
 
     return  ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(16))
+
+def convert_md5(origin):
+    result = []
+    s = ""
+    for i in range(len(origin)):
+            s += origin[i]
+            if i %2 != 0 :
+                    int_hex = int(s, 16)
+                    result.append(int_hex)
+                    s = ""
+
+    return result
 
 # 获取密钥
 def create_RegKey():
@@ -24,12 +36,13 @@ def create_RegKey():
     timeStamp = str(hh.getTimestamp())
 
     before_regKey=secret+timeStamp
-
+    before_regKey='fsdfsdfsdfsdfsxs12323'
     before_regKey_byte= bytes(before_regKey,encoding='utf-8')
     logger.buildStartLine_info('md5加密前%s' % before_regKey_byte)
-    regKey=hashlib.md5(before_regKey_byte).hexdigest()[8:-8]
-
+    regKey=hashlib.md5(before_regKey_byte).hexdigest()
+    regKey=convert_md5(regKey)
     logger.buildStartLine_info('md5加密后%s' % regKey)
+   #logger.buildStartLine_info('md5加密后字节%s' % bytes(regKey,encoding='utf-8'))
     return  regKey
 
 class ase_GuMi():
@@ -94,13 +107,26 @@ def create_Sign(EncryptData):
     logger.buildStartLine_info('签名；%s' %data)
     return data
 
+def vaild(check_data,path):
+    op =operate_File(path)
+    d=op.read_file()
+    expect_data = d.get('expect')
+    key,=expect_data
+
+    expect_list = key.split('.')
+
+    for x in range(len(expect_list)):
+        check_data = check_data.get(expect_list[x])
+    expect_str=expect_data.get(key)
 
 if __name__ =='__main__':
-    ase = ase_GuMi()
-    s=ase.encrypt('1213132')
-    #print(s)
-    create_RegKey()
-    create_Sign(s)
+   #ase = ase_GuMi()
+   #s=ase.encrypt('1213132')
+   #d = ase.decrypt('93b3631ca243ac40b2466b6cfb3e91f7')
+   #print(d)
+   #print('加密%s' %s)
+   create_RegKey()
+   #create_Sign(s)
 
 
 

@@ -1,0 +1,14 @@
+test_name: 用户信息查询
+parm:
+  service: bind_url
+  body:
+    index:
+      name: shen
+      vals:
+       - 111111
+       - 222222
+expect:
+   - parm.body.index.name: wang
+
+
+
