@@ -1,6 +1,6 @@
 test_name: 用户信息查询
 parm:
-  service: 'queryUser'
+  service: 'queryInvests'
   body:
     index:
       name: 'platformUserNo'
@@ -8,7 +8,5 @@ parm:
       vals:
        - 'GM0000011301'
 expect:
-   - body.0.usernamep: '3000000419322008'
-   - body.0.bindType: 0
-
-
+   - body.0.id: 'QY1806276818772681'
+   - body.0.amount: 200

@@ -37,14 +37,7 @@ def list_reverse(parm_li,reverse_type=0):
     return result_li
 
 if __name__ =='__main__':
-    #print(md5_str('kkk'))
+    print(md5_str('kkk'))
 
-    x = lambda : print(111)
-    x()
-    a='shen'
-    b='20'
-    c='it'
-    print('her name is{},her age is{},her work is {}'.format(a,b,c) )
-    print('{}{}{}'.format(a,b,c))
-    sql= 'select * from vault_user where id="{}"'.format(b)
-    print(sql)
+
+

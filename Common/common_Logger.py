@@ -28,7 +28,7 @@ class Log:
         if not os.path.exists(logPath):
             os.makedirs(logPath)
         self.checkNo = 0
-        logging.basicConfig(level=logging.DEBUG,
+        logging.basicConfig(level=logging.INFO,
                             format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')
         self.logger = logging.getLogger()
 
@@ -52,17 +52,25 @@ class Log:
         """
         return self.logger
 
-    def buildStartLine_info(self, caseNo):
+    def info(self, caseNo):
         """build the start log
         :param caseNo:
         :return:
         """
         startLine = "----  " + caseNo + "   " + "   " + \
                     "  ----"
-        # startLine = "----  " + caseNo + "   " + "START" + "   " + \
-        #             "  ----"
+
         self.logger.info(startLine)
-    def buildStartLine_error(self, caseNo):
+    def debug(self, caseNo):
+        """build the start log
+        :param caseNo:
+        :return:
+        """
+        startLine = "----  " + caseNo + "   " + "   " + \
+                    "  ----"
+
+        self.logger.debug(startLine)
+    def error(self, caseNo):
         """build the start log
         :param caseNo:
         :return:

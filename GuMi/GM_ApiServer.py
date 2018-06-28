@@ -1,11 +1,11 @@
 from GuMi.gm_http import Base_Requests
 import  json
-from Common.common_Time import hh_Time
+from common_Time import hh_Time
 from GuMi.gumi_Tools import *
-from Common.common_Logger import *
+from common_Logger import *
 import ast
 import traceback
-
+from common_Verify import eq_verify
 logger = myLog.getLog()
 
 def xx_post(url,host=0,special=0,**kwargs):
@@ -40,18 +40,18 @@ def send_post(parm_url,json_str):
 
         result_parm_dic=json.dumps(d3)
 
-        logger.buildStartLine_info('组装的参数字典为%s' %result_parm_dic)
+        logger.debug('组装的参数字典为%s' %result_parm_dic)
         result = xx_post('',1, 1,data=result_parm_dic)
         result_data = xx_post('',  data=result)
         if json.loads(result_data).get('code')==500  :
-            logger.buildStartLine_info('最终返回结果为:%s' % result_data)
+            logger.debug('最终返回结果为:%s' % result_data)
             return result_data
         elif json.loads(result_data).get('code')==1999:
-            logger.buildStartLine_info('最终返回结果为:%s' % result_data)
+            logger.debug('最终返回结果为:%s' % result_data)
             return result_data
         else:
             result = xx_post('', 2, 1, data=result_data)
-            logger.buildStartLine_info('最终返回结果为:%s' %result)
+            logger.debug('最终返回结果为:%s' %result)
             return result
     except :
         traceback.print_exc()
@@ -61,4 +61,12 @@ def send_post(parm_url,json_str):
 
 if __name__ == '__main__':
 
-    send_post('queryUser','')
+    #send_post('queryUser','')
+    path='../TestData/gm/invest.yaml'
+    parm_dic=get_ParmData(path)
+    url = parm_dic.get('service')
+    parm_str=parm_dic.get('body')
+    #print(url,parm_str)
+    result = send_post(url,str(parm_str))
+    eq_verify(json.loads(result),path)
+    #print(result)

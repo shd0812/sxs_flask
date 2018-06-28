@@ -1,5 +1,5 @@
 import requests
-from Common.common_Logger import *
+from common_Logger import *
 import json
 
 logger = myLog.getLog()
@@ -18,7 +18,7 @@ class Base_Requests(object):
             url=self.host
         else:
             url = self.host + self.params_url
-        logger.buildStartLine_info('请求地址为：%s' %url)
+        logger.debug('请求地址为：%s' %url)
 
         #print(kwargs)
         if self.method == 'POST':
@@ -26,7 +26,7 @@ class Base_Requests(object):
                 kwargs = kwargs['data']
             elif special ==0:
                 kwargs = kwargs['data']['data']
-            logger.buildStartLine_info('请求数据为：%s' % kwargs)
+            logger.debug('请求数据为：%s' % kwargs)
 
             r = self.client.post(url, data=kwargs)
 
@@ -34,16 +34,16 @@ class Base_Requests(object):
             if r.status_code == 200:
                 try:
                     result = r.text
-                    logger.buildStartLine_info('返回结果为：%s' % result)
+                    logger.debug('返回结果为：%s' % result)
                     return result
                 except:
                     return r.text
             else:
-                logger.buildStartLine_info('返回失败结果为：%s' % r.status_code)
-        else:
+                logger.debug('返回失败结果为：%s' % r.status_code)
+        elif self.method == 'GET':
             r = self.client.get(url, params=kwargs)
             r.encoding = 'UTF-8'
             if r.status_code == 200:
                 result = json.loads(r.text)
-                logger.buildStartLine_info('请求结果为：%s' % result)
+                logger.debug('请求结果为：%s' % result)
                 return result
