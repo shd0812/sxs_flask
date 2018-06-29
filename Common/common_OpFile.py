@@ -23,6 +23,9 @@ class operate_File():
             if '\..' in grand_path:
                 final_path=grand_path.replace('\../','/')
                 return final_path
+        elif platform.system() == 'Linux':
+            logger.debug('linux上地址为{}'.format(grand_path))
+            return grand_path
         else:
             logger.error('暂未考虑其他平台的处理')
     #读取文件
