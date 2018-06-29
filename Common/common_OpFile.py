@@ -25,7 +25,7 @@ class operate_File():
                 return final_path
         elif platform.system() == 'Linux':
             if '/../' in grand_path:
-                final_path = grand_path.replace('/../','.')
+                final_path = grand_path.replace('/../','/')
 
                 logger.debug('linux上地址为{}'.format(grand_path))
                 return final_path
