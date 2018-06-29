@@ -1,4 +1,4 @@
-from common_OpDB import  hh_DB
+from Common.common_OpDB import  hh_DB
 
 db = hh_DB('sxs_vault', '../config.ini')
 #k=db.get_data("SELECT mobile FROM `vault_user_invest_trade_log` WHERE id = 72623")

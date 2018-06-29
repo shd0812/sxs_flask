@@ -1,10 +1,10 @@
-from common_Time import hh_Time
+from Common.common_Time import hh_Time
 import hashlib
 from Crypto.Cipher import AES
 from binascii import b2a_hex, a2b_hex
 
-from common_Logger import myLog
-from common_OpFile import operate_File
+from Common.common_Logger import myLog
+from Common.common_OpFile import operate_File
 logger = myLog.getLog()
 
 

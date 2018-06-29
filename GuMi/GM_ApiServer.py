@@ -1,11 +1,11 @@
 from GuMi.gm_http import Base_Requests
 import  json
-from common_Time import hh_Time
+from Common.common_Time import hh_Time
 from GuMi.gumi_Tools import *
-from common_Logger import *
+from Common.common_Logger import *
 import ast
 import traceback
-from common_Verify import eq_verify
+from Common.common_Verify import eq_verify
 logger = myLog.getLog()
 
 def xx_post(url,host=0,special=0,**kwargs):

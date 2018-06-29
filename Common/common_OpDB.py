@@ -1,6 +1,6 @@
 import pymysql
-from common_OpFile import operate_File
-from common_Logger import *
+from Common.common_OpFile import operate_File
+from Common.common_Logger import *
 
 logger = myLog.getLog()
 

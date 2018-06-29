@@ -1,5 +1,5 @@
 import requests
-from common_Logger import *
+from Common.common_Logger import *
 import json
 
 logger = myLog.getLog()
