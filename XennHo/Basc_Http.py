@@ -19,7 +19,7 @@ class Base_Requests(object):
 
             r.encoding = 'UTF-8'
             if r.status_code == 200:
-                result = json.loads(r.text)
+                result = r
                 return result
         else:
             r = requests.get(url, params=kwargs)

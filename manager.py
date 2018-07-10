@@ -2,6 +2,7 @@ from flask import Flask,render_template
 
 app = Flask(__name__)
 app.secret_key = '123'
+
 from XennHo.XH_View import xnho
 app.register_blueprint(xnho,url_prefix='/home')
 

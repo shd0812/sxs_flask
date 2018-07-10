@@ -27,7 +27,7 @@ def send_post(parm_url,str):
 if __name__=='__main__':
     #path='C:/Users/shd/Desktop/测试文档/星火投资/星火脚本/用例/新用户注册.yaml'
     #data=register_query('register',path)
-    #parm_str = 'platform_uid=293_m&start_time=2018-05-12 12:34:34&end_time=2018-05-12 12:34:34'
-    #data=send_post('5',parm_str)
-    print(11)
+    parm_str = 'platform_uid=3000000419294000_m'
+    data=send_post('query_useraccount',parm_str)
+    print(data.text)
 
